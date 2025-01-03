@@ -1,0 +1,170 @@
+[
+    {
+        "id": 2,
+        "name": "MiBand Fitness Watch",
+        "price": 29.99,
+        "image": "images/all/miband.jpg",
+        "description": "The MiBand Fitness Watch is a perfect companion for anyone looking to track their fitness goals and stay connected throughout the day. With its sleek and minimalistic design, this fitness tracker helps you monitor steps, heart rate, sleep patterns, and much more, all while sending notifications directly to your wrist. Whether you're at the gym or out for a walk, this is the watch that helps you stay on top of your health.",
+        "rating": 4.2
+    },
+    {
+        "id": 3,
+        "name": "Delicious Sweet Treats",
+        "price": 19.99,
+        "image": "images/all/sweet.png",
+        "description": "Indulge your sweet tooth with our collection of delicious, mouth-watering treats. From chocolate confections to fruit-flavored delights, these sweets are designed to satisfy any craving. Whether you’re looking for a quick snack or something to share with friends and family, these treats will bring a smile to your face with every bite.",
+        "rating": 4.7
+    },
+    {
+        "id": 4,
+        "name": "Wireless Air Pods",
+        "price": 99.99,
+        "image": "images/all/wireless.png",
+        "description": "These wireless Air Pods offer a seamless audio experience without the hassle of tangled wires. With a sleek, lightweight design, they provide high-quality sound for music lovers and clear calls for busy professionals. Perfect for long commutes, workouts, or just relaxing at home, these Air Pods are equipped with advanced noise cancellation and long battery life, ensuring you enjoy your favorite tunes all day long.",
+        "rating": 4.6
+    },
+    {
+        "id": 5,
+        "name": "Face Care Essentials",
+        "price": 39.99,
+        "image": "images/beauty/face_care.png",
+        "description": "Our Face Care Essentials kit is designed to provide everything you need to maintain a healthy and glowing complexion. This set includes a gentle cleanser, nourishing moisturizer, and revitalizing serum that work together to cleanse, hydrate, and protect your skin. Whether you’re dealing with dry, oily, or sensitive skin, this kit has been formulated to enhance your natural beauty and leave your face feeling fresh and rejuvenated.",
+        "rating": 4.8
+    },
+    {
+        "id": 6,
+        "name": "Luxury Perfume",
+        "price": 59.99,
+        "image": "images/beauty/perfume.png",
+        "description": "Indulge in the luxurious scent of this high-end perfume, crafted to provide a sophisticated and long-lasting fragrance. The elegant notes blend together to create a unique aroma that will linger throughout the day, making it the perfect finishing touch for any occasion. Whether you're dressing up for a night out or looking to elevate your everyday look, this perfume will leave a lasting impression wherever you go.",
+        "rating": 4.5
+    },
+    {
+        "id": 7,
+        "name": "Elegant Earrings",
+        "price": 29.99,
+        "image": "images/jewelry/earrings.png",
+        "description": "These elegant earrings are the perfect accessory to elevate any outfit. Crafted from high-quality materials, they feature a sophisticated design that is both timeless and modern. Whether you're attending a formal event or adding a bit of sparkle to your everyday look, these earrings will add a touch of class and elegance to any ensemble.",
+        "rating": 4.3
+    },
+    {
+        "id": 8,
+        "name": "Charming Jewelry Box",
+        "price": 49.99,
+        "image": "images/jewelry/jewelry-box.png",
+        "description": "This charming jewelry box is not only a functional storage solution but also a beautiful decorative piece for any room. With multiple compartments for rings, necklaces, and bracelets, it helps keep your jewelry organized and safe. The elegant design and luxurious finish make it the perfect gift for someone special or a stylish addition to your own collection.",
+        "rating": 4.4
+    },
+    {
+        "id": 9,
+        "name": "Necklace Jewelry Set",
+        "price": 79.99,
+        "image": "images/jewelry/necklace-jewellery.png",
+        "description": "This exquisite necklace jewelry set is designed to make a statement at any event. Featuring intricate craftsmanship and high-quality materials, the set includes a beautifully crafted necklace and matching earrings. Perfect for weddings, anniversaries, or special celebrations, this set will make you feel glamorous and elegant, no matter the occasion.",
+        "rating": 4.6
+    },
+    {
+        "id": 10,
+        "name": "Elegant Wedding Ring",
+        "price": 199.99,
+        "image": "images/jewelry/wedding_ring.png",
+        "description": "This stunning wedding ring is the ultimate symbol of love and commitment. Crafted from the finest materials, it features intricate detailing and a timeless design that will never go out of style. Whether you're preparing for your big day or celebrating years of togetherness, this ring will be a cherished reminder of your most special moments.",
+        "rating": 4.9
+    },
+    {
+        "id": 11,
+        "name": "Men's Classic Jacket",
+        "price": 69.99,
+        "image": "images/men_fashion/man_jacket.png",
+        "description": "The Men's Classic Jacket is the perfect combination of style and comfort. Made from durable, high-quality fabric, this jacket is ideal for all types of weather, keeping you warm without sacrificing fashion. Whether you’re heading to the office or out for a weekend adventure, this jacket provides a sleek and stylish look that’s perfect for any occasion.",
+        "rating": 4.4
+    },
+    {
+        "id": 12,
+        "name": "Men's Casual Pants",
+        "price": 39.99,
+        "image": "images/men_fashion/pants.png",
+        "description": "These men’s casual pants are designed for everyday comfort and versatility. Made with breathable fabric, they offer a relaxed fit while maintaining a sharp, well-put-together look. Whether paired with a t-shirt for a laid-back style or dressed up with a button-down shirt, these pants are perfect for both casual and semi-formal events.",
+        "rating": 4.2
+    },
+    {
+        "id": 13,
+        "name": "Men's Stylish Shirt",
+        "price": 29.99,
+        "image": "images/men_fashion/shert.png",
+        "description": "This stylish men's shirt combines a modern design with a comfortable fit. The premium fabric ensures breathability, while the stylish cut adds a contemporary touch to your wardrobe. Whether worn on its own or layered under a jacket, this shirt is perfect for both workdays and weekend outings.",
+        "rating": 4.3
+    },
+    {
+        "id": 14,
+        "name": "Classic T-Shirt",
+        "price": 19.99,
+        "image": "images/men_fashion/t-shirt.png",
+        "description": "The classic t-shirt is a staple in every man’s wardrobe. Made from soft, durable cotton, this shirt provides all-day comfort while offering a timeless style that can be paired with just about anything. Whether you’re lounging at home or out with friends, this t-shirt is a go-to option for any casual occasion.",
+        "rating": 4.1
+    },
+    {
+        "id": 15,
+        "name": "Sleek Watch",
+        "price": 89.99,
+        "image": "images/men_fashion/watch.png",
+        "description": "This sleek watch is the perfect accessory for the modern man. With a minimalist design and durable construction, it provides a sophisticated look for any occasion. Whether you’re dressing up for a business meeting or going for a casual outing, this watch will help you make a lasting impression.",
+        "rating": 4.5
+    },
+    {
+        "id": 16,
+        "name": "Air Jordan Sneakers",
+        "price": 149.99,
+        "image": "images/shoes/Air_Jordan.png",
+        "description": "Air Jordan sneakers are iconic in the world of footwear, offering both high-performance and style. With cutting-edge design and unmatched comfort, these sneakers are a must-have for anyone looking to make a bold statement. Whether you're on the court or out on the streets, these sneakers provide the perfect blend of fashion and functionality.",
+        "rating": 4.7
+    },
+    {
+        "id": 17,
+        "name": "New Balance 990 Sneakers",
+        "price": 129.99,
+        "image": "images/shoes/New_Balance_990.png",
+        "description": "New Balance 990 sneakers are built for both performance and comfort. Known for their supportive cushioning and stylish design, these sneakers are perfect for athletes and casual wearers alike. Whether you’re hitting the gym or running errands, these sneakers will keep your feet comfortable and stylish all day long.",
+        "rating": 4.4
+    },
+    {
+        "id": 18,
+        "name": "Everyday Shoes",
+        "price": 49.99,
+        "image": "images/shoes/shoes.png",
+        "description": "These everyday shoes offer the perfect combination of comfort and style. Designed to fit your busy lifestyle, they provide all-day comfort while complementing any casual outfit. Whether you’re walking, running errands, or just out for a leisurely stroll, these shoes are your go-to choice for comfort and reliability.",
+        "rating": 4.2
+    },
+    {
+        "id": 19,
+        "name": "Sports Shoes",
+        "price": 69.99,
+        "image": "images/shoes/sports_shoes.png",
+        "description": "These sports shoes are designed to support your active lifestyle. Featuring breathable mesh, durable soles, and added cushioning, they are perfect for running, gym workouts, or outdoor activities. Their sleek design and performance-enhancing features make them a top choice for athletes and fitness enthusiasts.",
+        "rating": 4.3
+    },
+    {
+        "id": 20,
+        "name": "Vans Old Skool Sneakers",
+        "price": 79.99,
+        "image": "images/shoes/vans_old_skool.png",
+        "description": "Vans Old Skool sneakers are a classic choice for anyone who loves skate culture or laid-back street style. Featuring the iconic side stripe and a comfortable fit, these sneakers combine durability and style. Whether you're skating or just enjoying a casual day out, these sneakers are a must-have for anyone looking to add some edge to their wardrobe.",
+        "rating": 4.5
+    },
+    {
+        "id": 21,
+        "name": "White Sneaker Shoes",
+        "price": 59.99,
+        "image": "images/shoes/white_sneaker.png",
+        "description": "These white sneakers offer a clean, fresh look that pairs effortlessly with any casual outfit. The minimalist design ensures they can be worn with anything from jeans to shorts, providing a versatile addition to your wardrobe. Perfect for any season, these sneakers are comfortable, stylish, and easy to maintain.",
+        "rating": 4.4
+    },
+    {
+        "id": 22,
+        "name": "Women's Fashionable Shoes",
+        "price": 89.99,
+        "image": "images/shoes/women-shoes.png",
+        "description": "These women's fashionable shoes are the perfect blend of comfort and style. Featuring a sleek design and soft materials, they offer the support you need while making a statement. Whether you're dressing up for a special occasion or pairing them with your favorite outfit, these shoes will add a chic touch to any ensemble.",
+        "rating": 4.6
+    }
+]

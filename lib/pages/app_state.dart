@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
+import '../models/product.dart';
 
 class AppState extends ChangeNotifier {
-  final List<int> cart = [];
-  final List<int> favorites = [];
+  final List<Product> cart = [];
+  final List<Product> favorites = [];
 
-  void addToCart(int index) {
-    if (!cart.contains(index)) {
-      cart.add(index);
+  void addToCart(Product product) {
+    if (!cart.contains(product)) {
+      cart.add(product);
       notifyListeners();
     }
   }
 
-  void removeFromCart(int index) {
-    cart.remove(index);
+  void removeFromCart(Product product) {
+    cart.remove(product);
     notifyListeners();
   }
 
-  void addToFavorites(int index) {
-    if (!favorites.contains(index)) {
-      favorites.add(index);
+  void addToFavorites(Product product) {
+    if (!favorites.contains(product)) {
+      favorites.add(product);
       notifyListeners();
     }
   }
 
-  void removeFromFavorites(int index) {
-    favorites.remove(index);
+  void removeFromFavorites(Product product) {
+    favorites.remove(product);
     notifyListeners();
+  }
+
+  bool isInCart(Product product) {
+    return cart.contains(product);
+  }
+
+  bool isInFavorites(Product product) {
+    return favorites.contains(product);
   }
 }

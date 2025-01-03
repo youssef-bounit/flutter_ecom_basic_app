@@ -1,88 +1,253 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_ecom_basic_app/constants/colors.dart';
 import 'product_details_page.dart';
 import 'cart_page.dart';
 import 'favorite_page.dart';
 import 'app_state.dart';
 import 'package:provider/provider.dart';
+import '../models/product.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  late Future<List<Product>> _products;
+
+  @override
+  void initState() {
+    super.initState();
+    _products = _loadProducts();
+  }
+
+  Future<List<Product>> _loadProducts() async {
+    final String response =
+        await rootBundle.loadString('assets/data/products.json');
+    final List<dynamic> data = json.decode(response);
+    return data.map((json) => Product.fromJson(json)).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Products')),
-      body: GridView.builder(
-        padding: EdgeInsets.all(16.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+      appBar: AppBar(
+        backgroundColor: lightWhiteColor,
+        elevation: 0.1,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          icon: const HugeIcon(
+            icon: HugeIcons.strokeRoundedDashboardSquare01,
+            color: primaryColor,
+            size: 24,
+          ),
+          onPressed: () {},
         ),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProductDetailsPage(index: index),
+      ),
+      body: Container(
+        color: lightWhiteColor,
+        child: FutureBuilder<List<Product>>(
+          future: _products,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return const Center(child: Text('Error loading products'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(child: Text('No products available'));
+            }
+
+            final products = snapshot.data!;
+
+            return GridView.builder(
+              padding: const EdgeInsets.all(16.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
               ),
-            ),
-            child: Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.image, size: 50, color: Colors.grey),
-                  SizedBox(height: 10),
-                  Text('Product $index',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 5),
-                  Text('\$${(index + 1) * 10}',
-                      style: TextStyle(fontSize: 14, color: Colors.blue)),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => appState.addToCart(index),
-                        child: Icon(Icons.add_shopping_cart),
-                      ),
-                      ElevatedButton(
-                        onPressed: () => appState.addToFavorites(index),
-                        child: Icon(Icons.favorite),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          );
-        },
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ProductDetailsPage(product: product),
+                    ),
+                  ),
+                  child: Card(
+                    elevation: 0,
+                    color: greyColor,
+                    child: Stack(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 10),
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color:
+                                        const Color.fromARGB(49, 112, 112, 112)
+                                            .withOpacity(0.4),
+                                    offset: const Offset(2, 2),
+                                    blurRadius: 50,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Image.asset(
+                                product.image,
+                                height: 70,
+                                width: 70,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      product.name,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.8),
+                                    child: Text(
+                                      '\$${product.price}',
+                                      style: const TextStyle(
+                                          fontSize: 14, color: yellowColor),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    appState.addToFavorites(product);
+                                  },
+                                  icon: const HugeIcon(
+                                    icon: HugeIcons.strokeRoundedFavourite,
+                                    color: primaryColor,
+                                    size: 22,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    appState.addToCart(product);
+                                  },
+                                  icon: const HugeIcon(
+                                    icon: HugeIcons
+                                        .strokeRoundedShoppingCartCheckIn01,
+                                    color: primaryColor,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: const Offset(1, 1),
+                                  blurRadius: 4,
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.star,
+                                    size: 16, color: Colors.amber),
+                                const SizedBox(width: 4),
+                                Text(
+                                  '${product.rating}',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
             heroTag: 'cart',
+            backgroundColor: primaryColor,
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CartPage()),
+              MaterialPageRoute(builder: (context) => const CartPage()),
             ),
-            child: Icon(Icons.shopping_cart),
+            child: const HugeIcon(
+              icon: HugeIcons.strokeRoundedShoppingCart01,
+              color: Colors.white,
+              size: 25,
+            ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'favorites',
+            backgroundColor: primaryColor,
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => FavoritePage()),
+              MaterialPageRoute(builder: (context) => const FavoritePage()),
             ),
-            child: Icon(Icons.favorite),
+            child: const HugeIcon(
+              icon: HugeIcons.strokeRoundedFavourite,
+              color: Colors.white,
+              size: 25,
+            ),
           ),
         ],
       ),
