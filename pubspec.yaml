@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.0.3
   hugeicons: ^0.0.7
+  ionicons: ^0.2.2
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,11 @@ flutter:
   assets:
     - assets/data/products.json
     - assets/images/
+    - assets/images/all/
+    - assets/images/beauty/
+    - assets/images/jewelry/
+    - assets/images/men_fashion/
+    - assets/images/shoes/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

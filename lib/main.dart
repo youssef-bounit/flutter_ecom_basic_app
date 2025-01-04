@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecom_basic_app/pages/login_page.dart';
 import 'pages/home_page.dart';
 import 'pages/app_state.dart';
 import 'package:provider/provider.dart';
@@ -18,12 +19,13 @@ class EcomApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'E-Commerce App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'E-Commerce App',
+        initialRoute: '/login',
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/home': (context) => const HomePage(),
+          // Add other routes here
+        });
   }
 }
