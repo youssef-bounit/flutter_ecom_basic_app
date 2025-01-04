@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecom_basic_app/main.dart';
-import 'package:flutter_ecom_basic_app/pages/app_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 
