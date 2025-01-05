@@ -22,7 +22,7 @@ class Product {
       id: json['id'],
       name: json['name'],
       price: json['price'],
-      image: json['image'], // Ensure this is a valid image URL or asset path
+      image: json['image'],
       description: json['description'],
       rating: json['rating'],
       quantity: json['quantity'],

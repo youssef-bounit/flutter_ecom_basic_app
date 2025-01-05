@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecom_basic_app/constants/colors.dart';
 import 'product_details_page.dart';
@@ -41,17 +42,10 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightWhiteColor,
-        elevation: 0.1,
-        scrolledUnderElevation: 0,
-        surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          icon: const HugeIcon(
-            icon: HugeIcons.strokeRoundedDashboardSquare01,
-            color: primaryColor,
-            size: 24,
-          ),
-          onPressed: () {},
-        ),
+        title: const Text(
+          "Ecom App",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ), // Removing the title as it's handled in the leading
       ),
       body: Container(
         color: lightWhiteColor,
@@ -59,7 +53,10 @@ class HomePageState extends State<HomePage> {
           future: _products,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: primaryColor,
+              ));
             } else if (snapshot.hasError) {
               return const Center(child: Text('Error loading products'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -98,80 +95,101 @@ class HomePageState extends State<HomePage> {
                       child: Stack(
                         children: [
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const SizedBox(height: 8),
-                              Container(
-                                height: 70,
-                                width: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Image.asset(
-                                  'assets/${product.image}',
-                                  height: 70,
-                                  width: 70,
-                                  fit: BoxFit.cover,
+                              const SizedBox(height: 2),
+                              FractionallySizedBox(
+                                widthFactor: 0.3,
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                    minHeight:
+                                        MediaQuery.of(context).size.height / 14,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.asset(
+                                      'assets/${product.image}',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                              Column(
                                 children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Text(
-                                        product.name,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Text(
+                                            product.name,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.8),
+                                          child: Text(
+                                            '\$${product.price}',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: hevyYellowColor,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          appState.toggleFavorite(product);
+                                        },
+                                        icon: Icon(
+                                          appState.isInFavorites(product)
+                                              ? CupertinoIcons.heart_fill
+                                              : CupertinoIcons.heart,
+                                          color: appState.isInFavorites(product)
+                                              ? Colors.red
+                                              : primaryColor,
+                                          size: 22,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          appState.addToCart(product);
+                                        },
+                                        icon: const HugeIcon(
+                                          icon: HugeIcons
+                                              .strokeRoundedShoppingCartCheckIn01,
+                                          color: primaryColor,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
-                              ),
-                              const SizedBox(height: 5),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 8.8),
-                                  child: Text(
-                                    '\$${product.price}',
-                                    style: const TextStyle(
-                                        fontSize: 14, color: yellowColor),
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      appState.toggleFavorite(product);
-                                    },
-                                    icon: HugeIcon(
-                                      icon: HugeIcons.strokeRoundedFavourite,
-                                      color: appState.isInFavorites(product)
-                                          ? Colors.red
-                                          : primaryColor,
-                                      size: 22,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      appState.addToCart(product);
-                                    },
-                                    icon: const HugeIcon(
-                                      icon: HugeIcons
-                                          .strokeRoundedShoppingCartCheckIn01,
-                                      color: primaryColor,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              )
                             ],
                           ),
                           Positioned(
@@ -240,8 +258,8 @@ class HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(builder: (context) => const FavoritePage()),
             ),
-            child: const HugeIcon(
-              icon: HugeIcons.strokeRoundedFavourite,
+            child: const Icon(
+              CupertinoIcons.heart,
               color: Colors.white,
               size: 25,
             ),

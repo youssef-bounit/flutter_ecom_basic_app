@@ -13,41 +13,98 @@ class FavoritePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorites'),
+        title: const Text('My Favorites'),
         backgroundColor: lightWhiteColor,
         leading: Padding(
-          padding: const EdgeInsets.all(8.0), // Adjust the margin as needed
+          padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.circular(7),
             ),
             child: IconButton(
-              icon: const Icon(Icons.arrow_back,
-                  color: Colors.white), // Change icon color if needed
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () {
-                Navigator.of(context).pop(); // Navigate back when pressed
+                Navigator.of(context).pop();
               },
             ),
           ),
         ),
       ),
       body: Container(
-        color: lightWhiteColor, // Set your desired background color here
+        color: lightWhiteColor,
         child: appState.favorites.isEmpty
             ? const Center(child: Text('No favorite items yet'))
             : ListView.builder(
                 itemCount: appState.favorites.length,
                 itemBuilder: (context, index) {
                   final Product product = appState.favorites[index];
-                  return ListTile(
-                    leading:
-                        const Icon(Icons.image), // Replace with product image
-                    title: Text(product.name),
-                    subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => appState.removeFromFavorites(product),
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: greyColor,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16.0),
+                            child: Image.asset(
+                              'assets/${product.image}',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.name.length > 15
+                                      ? '${product.name.substring(0, 15)}...'
+                                      : product.name,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '\$${product.price.toStringAsFixed(2)}',
+                                  style:
+                                      const TextStyle(color: hevyYellowColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                appState.removeFromFavorites(product);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                backgroundColor: deleteRed,
+                                foregroundColor: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons.delete,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

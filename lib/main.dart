@@ -25,7 +25,6 @@ class EcomApp extends StatelessWidget {
         routes: {
           '/login': (context) => const LoginPage(),
           '/home': (context) => const HomePage(),
-          // Add other routes here
         });
   }
 }
